@@ -1,3 +1,6 @@
+
+
+
 let currentUser = null;
 
 // Function to display a notification
@@ -7,6 +10,8 @@ function showNotification(message) {
     notification.style.opacity = 1;
     setTimeout(() => (notification.style.opacity = 0), 1000);
 }
+
+
 
 // Login function
 function login() {
@@ -236,6 +241,11 @@ document.getElementById('accountsList').addEventListener('click', (event) => {
         loginWithAccount(target.dataset.username);
     }
 });
+
+
+
+
+
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', checkLoginStatus);
