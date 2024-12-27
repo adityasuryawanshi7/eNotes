@@ -299,7 +299,7 @@ button:hover {
 }
 
 #accountsList li {
-    padding: 5px 15px;
+    padding: 10px 15px;
     background: #3c3c3c;
     margin-bottom: 5px;
     border-radius: 5px;
@@ -316,7 +316,7 @@ button:hover {
     color: red;
     font-size: 20px;
     cursor: pointer;
-    background: white;
+    background:#3c3c3c;
     height: 30px;
     width: 30px;
     border-radius: 50%;
