@@ -244,6 +244,24 @@ document.getElementById('accountsList').addEventListener('click', (event) => {
 
 
 
+// Dark Mode Toggle Logic
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+// Check for saved preference
+const isDarkMode = localStorage.getItem('darkMode') === 'true';
+if (isDarkMode) {
+    body.classList.add('dark-mode');
+    darkModeToggle.textContent = '‧₊˚ ☾.'; // Update icon
+}
+
+// Toggle dark mode on click
+darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const isDark = body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDark); // Save preference
+    darkModeToggle.textContent = isDark ? '‧₊˚ ☾.' : '🔅'; // Update icon
+});
 
 
 

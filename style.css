@@ -30,6 +30,64 @@ background: linear-gradient(135deg, #6d83f2, #d883f2);
     }
 }
 
+/* Dark Mode Styling */
+body.dark-mode {
+    background: #1e1e1e;
+    color: #cfcfcf;
+}
+
+body.dark-mode textarea,
+body.dark-mode input,
+body.dark-mode button {
+    background: #2a2a2a;
+    color: #ffffff;
+    border-color: #555555;
+}
+
+body.dark-mode #sn {
+    background: #333333;
+}
+
+body.dark-mode .note {
+    background: #333333;
+    border-left: 5px solid #9e9e9e;
+}
+
+body.dark-mode #loginSection {
+    background: #2a2a2a;
+}
+
+body.dark-mode .export-import-buttons button,
+body.dark-mode #logoutBtn {
+    background: #444444;
+    color: #ffffff;
+}
+
+/* Toggle Button Styles */
+#darkModeToggle {
+    position: fixed;
+    top: 24px;
+    right: 130px;
+    padding: 7px 15px;
+    font-size: 1.2em;
+    background: #070505;
+    color: rgb(199, 199, 255);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#darkModeToggle:hover {
+    background: #070505;
+}
+
+#darkModeToggle:active {
+    transform: scale(0.95);
+}
+
+
 
 #loginSection {
     text-align: center;
