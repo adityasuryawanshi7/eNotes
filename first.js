@@ -1,6 +1,3 @@
-
-
-
 let currentUser = null;
 
 // Function to display a notification
@@ -10,8 +7,6 @@ function showNotification(message) {
     notification.style.opacity = 1;
     setTimeout(() => (notification.style.opacity = 0), 1000);
 }
-
-
 
 // Login function
 function login() {
@@ -42,31 +37,38 @@ function loadNotes() {
     if (!currentUser) return;
 
     const notesList = document.getElementById('notesList');
-    notesList.innerHTML = '';
+    notesList.innerHTML = ''; // Clear existing notes
 
     const notes = JSON.parse(localStorage.getItem(`notes_${currentUser}`)) || [];
     notes.forEach((note, index) => {
         const noteEl = document.createElement('div');
         noteEl.className = 'note';
+
+        // Convert line breaks to <br> when displaying note text
+        const formattedText = note.text.replace(/\n/g, '<br>'); // Convert \n to <br>
+
         noteEl.innerHTML = `
-            <span ondblclick="editNote(${index}, this)">${note}</span>
+            <div class="note-content">
+                <p ondblclick="editNote(${index}, this)">${formattedText}</p>
+            </div>
+            <span class="note-date">${note.date}</span>
             <div class="action-btn">
                 <button class="delete-btn" onclick="confirmDelete(${index})">✗</button>
                 <button class="drag-handle">☰</button>
             </div>`;
+        
         notesList.appendChild(noteEl);
     });
 
-    initializeSortable();
+    initializeSortable(); // Initialize drag-and-drop sorting
 }
 
 function editNote(index, spanElement) {
     const notes = JSON.parse(localStorage.getItem(`notes_${currentUser}`)) || [];
-    const currentText = notes[index];
+    const currentText = notes[index].text;
 
     // Replace the span element with an input field
-    const input = document.createElement('input');
-    input.type = 'text';
+    const input = document.createElement('textarea');
     input.value = currentText;
     input.className = 'edit-note-input';
 
@@ -80,7 +82,7 @@ function editNote(index, spanElement) {
     const saveChanges = () => {
         const updatedText = input.value.trim();
         if (updatedText) {
-            notes[index] = updatedText;
+            notes[index].text = updatedText;
             localStorage.setItem(`notes_${currentUser}`, JSON.stringify(notes));
             loadNotes();
             showNotification("Note updated!");
@@ -99,18 +101,22 @@ function editNote(index, spanElement) {
 
 function saveNote() {
     const noteInput = document.getElementById('noteInput');
-    const note = noteInput.value.trim();
+    const noteText = noteInput.value; // Preserve new lines (without trim)
 
-    if (!note) {
+    if (!noteText) {
         alert("Note cannot be empty.");
         return;
     }
 
     const notes = JSON.parse(localStorage.getItem(`notes_${currentUser}`)) || [];
-    notes.push(note);
+    const currentDate = new Date().toLocaleDateString('en-GB'); // Format: DD/MM/YYYY
+
+    // Save note with text and date, preserving line breaks (no trim to preserve the lines)
+    notes.push({ text: noteText, date: currentDate });
     localStorage.setItem(`notes_${currentUser}`, JSON.stringify(notes));
-    noteInput.value = '';
-    loadNotes();
+
+    noteInput.value = ''; // Clear input after saving
+    loadNotes(); // Reload notes
     showNotification("Note saved!");
 }
 
@@ -242,8 +248,6 @@ document.getElementById('accountsList').addEventListener('click', (event) => {
     }
 });
 
-
-
 // Dark Mode Toggle Logic
 const darkModeToggle = document.getElementById('darkModeToggle');
 const body = document.body;
@@ -263,7 +267,6 @@ darkModeToggle.addEventListener('click', () => {
     darkModeToggle.textContent = isDark ? '‧₊˚ ☾.' : '🔅'; // Update icon
 });
 
-
-
 // Initialize app
 document.addEventListener('DOMContentLoaded', checkLoginStatus);
+
