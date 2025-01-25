@@ -503,16 +503,3 @@ button:hover {
         right: 23px; /* Adjust as needed */
     
 }
-
-
-
-.note-date {
-    position: absolute;
-    right: 130px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.8rem;
-    color: grey;
-    white-space: nowrap; /* Prevent wrapping */
-}
-
