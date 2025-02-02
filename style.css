@@ -503,3 +503,16 @@ button:hover {
         right: 23px; /* Adjust as needed */
     
 }
+#checklist{
+    position: fixed;
+    top: 25px;
+    right: 196px;
+    padding: 8px 15px;
+    font-size: 1.2em;
+    background: #070505;
+    color: rgb(199, 199, 255);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
